@@ -1,0 +1,5 @@
+serial,track_id,install_date,last_inspection_date,fault,usage_days
+Lot#123-000001,Track Z,2025-02-07,2025-09-05,Wear,222
+Lot#123-000002,Track Z,2025-02-20,2025-09-18,None,209
+Lot#124-000001,Track X,2025-02-23,2025-09-21,Crack,206
+Lot#124-000002,Track Z,2025-02-02,2025-08-31,Crack,227
