@@ -1,3 +1,21 @@
 batch_id,vendor,supply_date,warranty_end,material_type,quantity
-Lot #123,Vendor Y,2025-01-01,2026-01-07,Steel Clip,10000
-Lot #124,Vendor Z,2025-02-01,2027-02-01,Rubber Pad,8500
+Lot #100,Vendor A,2024-10-22,2025-11-10,Steel Clip,9398
+Lot #101,Vendor A,2024-09-24,2026-03-18,Composite,8424
+Lot #102,Vendor A,2025-01-06,2026-09-12,Rubber Pad,8106
+Lot #103,Vendor B,2025-02-14,2026-11-18,Steel Clip,8921
+Lot #104,Vendor A,2024-11-26,2025-11-30,Steel Clip,11882
+Lot #105,Vendor A,2024-11-17,2025-12-05,Steel Clip,10163
+Lot #106,Vendor B,2025-01-17,2026-09-05,Steel Clip,9472
+Lot #107,Vendor B,2024-11-06,2026-04-28,Rubber Pad,9041
+Lot #108,Vendor B,2024-12-17,2026-01-30,Rubber Pad,8118
+Lot #109,Vendor B,2025-03-13,2026-10-23,Composite,11080
+Lot #110,Vendor C,2024-11-30,2026-03-17,Composite,11279
+Lot #111,Vendor B,2024-12-28,2026-10-31,Steel Clip,9260
+Lot #112,Vendor C,2025-02-09,2026-07-24,Steel Clip,11086
+Lot #113,Vendor A,2024-11-14,2026-03-11,Steel Clip,8832
+Lot #114,Vendor B,2025-03-01,2026-04-02,Composite,11741
+Lot #115,Vendor B,2025-02-12,2026-12-03,Steel Clip,8869
+Lot #116,Vendor A,2024-11-13,2026-08-23,Composite,9495
+Lot #117,Vendor A,2025-02-27,2026-05-15,Composite,11598
+Lot #118,Vendor C,2025-02-04,2026-05-09,Steel Clip,10164
+Lot #119,Vendor B,2024-12-22,2026-08-21,Rubber Pad,8647
