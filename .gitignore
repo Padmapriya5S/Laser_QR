@@ -6,3 +6,5 @@ env/
 logs/*.log
 node_modules/
 .DS_Store
+data/qr_codes/
+data/mock/*.csv
