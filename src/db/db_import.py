@@ -12,18 +12,18 @@ if project_root not in sys.path:
 
 from config.db_config import DB_CONFIG
 
-def generate_batch_data(num_entries=20):
+def generate_batch_data(num_batches=5):
     headers = ["batch_id", "vendor", "supply_date", "warranty_end", "material_type", "quantity"]
     data = []
     vendors = ["Vendor A", "Vendor B", "Vendor C"]
     materials = ["Steel Clip", "Rubber Pad", "Composite"]
-    for i in range(num_entries):
+    for i in range(num_batches):
         batch_id = f"Lot #{i+100:03d}"
         vendor = random.choice(vendors)
         supply_date = (datetime.now() - timedelta(days=random.randint(180, 360))).strftime("%Y-%m-%d")
         warranty_end = (datetime.strptime(supply_date, "%Y-%m-%d") + timedelta(days=random.randint(365, 730))).strftime("%Y-%m-%d")
         material_type = random.choice(materials)
-        quantity = random.randint(8000, 12000)
+        quantity = random.randint(5, 15)  # Controlled quantity for serials
         data.append([batch_id, vendor, supply_date, warranty_end, material_type, quantity])
     return data, headers
 
@@ -31,9 +31,10 @@ def generate_serials_data(batches):
     headers = ["serial", "batch_id"]
     data = []
     for batch in batches:
-        for i in range(random.randint(5, 15)):
-            serial = f"{batch[0].replace(' ', '')}-{str(i+1).zfill(6)}"  # batch[0] is batch_id
-            data.append([serial, batch[0]])
+        batch_id = batch[0]
+        for i in range(batch[5]):  # Use quantity from batch
+            serial = f"{batch_id.replace(' ', '')}-{str(i+1).zfill(6)}"
+            data.append([serial, batch_id])
     return data, headers
 
 def generate_tms_data(serials):
@@ -52,8 +53,8 @@ def generate_tms_data(serials):
 def save_to_csv(data, filename, headers):
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(headers)  # Write headers as a row
-        writer.writerows(data)    # Write data rows
+        writer.writerow(headers)
+        writer.writerows(data)
 
 try:
     conn = psycopg2.connect(**DB_CONFIG)
@@ -70,7 +71,7 @@ try:
     tms_data, tms_headers = generate_tms_data(serials_data)
     save_to_csv(tms_data, os.path.join(base_dir, 'tms_data.csv'), tms_headers)
 
-    # Import to PostgreSQL (skip header handled by copy_from)
+    # Import to PostgreSQL
     def import_csv_without_header(cursor, filename, table, columns):
         with open(filename, 'r') as f:
             next(f)  # Skip header
@@ -84,9 +85,9 @@ try:
     print("Mock data generated and imported successfully!")
 
 except psycopg2.Error as e:
-    print(f"Error importing data: {e}")
-except Exception as e:
-    print(f"Error: {e}")
+    print(f"Database error: {e}")
+    conn.rollback()
+
 finally:
     if conn:
         conn.close()
